@@ -1,3 +1,0 @@
-/mnt/c/Users/Dima/CLionProjects/Linux-Monitoring-system/cmake-build-debug/CMakeFiles/linut.dir
-/mnt/c/Users/Dima/CLionProjects/Linux-Monitoring-system/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/Dima/CLionProjects/Linux-Monitoring-system/cmake-build-debug/CMakeFiles/rebuild_cache.dir

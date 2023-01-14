@@ -1,10 +1,12 @@
 //
 // Created by Dima on 14/01/2023.
 //
-
-#include "../inc/linux_parser.h"
 #include <string>
 #include <vector>
+#include <dirent.h>
+#include <unistd.h>
+
+#include "../inc/linux_parser.h"
 
 float LinuxParser::MemoryUtil() {
     return 0.0;
@@ -45,11 +47,47 @@ std::string LinuxParser::Kernel() {
 }
 
 std::string LinuxParser::OS() {
-    return std::string();
+    std::string line;
+    std::string key;
+    std::string value;
+    std::ifstream filestream(kOSPath);
+
+    // Read the file line by line
+    if(filestream.is_open()){
+        while(std::getline(filestream, line)){
+            // Parse the line
+            std::replace(line.begin(), line.end(), '=', ' ');
+            std::replace(line.begin(), line.end(), '"', ' ');
+            std::istringstream linestream(line);
+            // Read the line for key value pairs and return it
+            while(linestream >> key >> value){
+                if(key == "PRETTY_NAME"){
+                    std::replace(value.begin(), value.end(), '_', ' ');
+                    return value;
+                }
+            }
+        }
+    }
+    return value;
 }
 
 std::vector<std::string> LinuxParser::CpuUtil() {
-    return std::vector<std::string>();
+    std::string line;
+    std::string key;
+    std::string value;
+    std::string usertime, nicetime, systemtime, idletime, iowait, irq, softirq, steal;
+    std::ifstream filestream(kProcDirectory + kStatFilename);
+    if (filestream.is_open()) {
+        while (std::getline(filestream, line)) {
+            std::istringstream linestream(line);
+            while (linestream >> key >> usertime >> nicetime >> systemtime >> idletime >> iowait >> irq >> softirq >> steal) {
+                if (key == "cpu") {
+                    return {usertime, nicetime, systemtime, idletime, iowait,   irq,      softirq,    steal};
+                }
+            }
+        }
+    }
+    return {};
 }
 
 // Read and return the system memory used by the process

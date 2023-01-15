@@ -5,8 +5,10 @@
 #include <vector>
 #include <dirent.h>
 #include <unistd.h>
+#include <algorithm>
+#include <sstream>
 
-#include "../inc/linux_parser.h"
+#include "linux_parser.h"
 
 float LinuxParser::MemoryUtil() {
     return 0.0;
@@ -34,7 +36,7 @@ int LinuxParser::CurrentProcesses() {
             std::istringstream linestream(line);
             while (linestream >> key >> value) {
                 if (key == "processes") {
-                    return std::stoi(value);
+                    return value;
                 }
             }
         }
@@ -95,16 +97,16 @@ std::string LinuxParser::Ram(int pid) {
     std::string line;
     std::string key;
     std::string value;
-    std::ifstream filestream(kProcDirectory + to_string(pid) + kStatusFilename);
+    std::ifstream filestream(kProcDirectory + std::to_string(pid) + kStatusFilename);
     if(filestream.is_open()){
         while(std::getline(filestream, line)){
             std::istringstream linestream(line);
             while(linestream >> key >> value){
                 if(key == "VmSize:"){
-                    return to_string(stoi(value)/1000); // returns memory usage in MB
+                    return std::to_string(stoi(value)/1000); // returns memory usage in MB
                 }
             }
         }
     }
-    return string();
+    return std::string();
 }

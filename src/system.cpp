@@ -7,10 +7,17 @@
 #include <string>
 #include <unistd.h>
 #include <vector>
-#include "../inc/system.h"
-#include "../inc/processor.h"
-#include "../inc/process.h"
-#include "../inc/linux_parser.h"
+#include "system.h"
+#include "processor.h"
+#include "process.h"
+#include "linux_parser.h"
+#include "iostream"
+
+System::System() {
+    cpu_ = Processor();
+    processess_ = {};
+    std::cout << "System created" << std::endl;
+}
 
 // Taking the systems CPU
 Processor &System::Cpu() { return cpu_; }
@@ -50,4 +57,12 @@ std::string System::Kernel(){ return LinuxParser::Kernel(); }
 std::string System::OS() {
     return LinuxParser::OS();
 }
+
+
+
+
+
+
+
+
 

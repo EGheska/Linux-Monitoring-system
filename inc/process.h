@@ -19,7 +19,6 @@ public:
     void updateCpuUtil();
     float getCpuUtil() const;
     std::string Ram();
-    long int upTime();
     bool operator<(Process const &a) const;
 
 private:

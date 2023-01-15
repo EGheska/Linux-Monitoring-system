@@ -1,8 +1,8 @@
 //
 // Created by Dima on 14/01/2023.
 //
-#include "../inc/processor.h"
-#include "../inc/linux_parser.h"
+#include "processor.h"
+#include "linux_parser.h"
 
 #include "string"
 #include "vector"
@@ -25,5 +25,5 @@ float Processor::Utilization() {
     const float NON_IDLE = usertime + nicetime + systemtime + irq + softirq + steal;
     const float TOTAL = IDLE + NON_IDLE;
 
-
+    return 0;
 }

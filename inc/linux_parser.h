@@ -6,7 +6,6 @@
 #define LIN_LINUX_PARSER_H
 
 #include <fstream>
-#include <regex>
 #include <string>
 #include <vector>
 

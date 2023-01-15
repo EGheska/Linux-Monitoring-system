@@ -3,5 +3,6 @@
 
 int main() {
     System system;
-    std::cout << "Jura horoshiy chel" << std::endl;
+    
+    std::cout << "" << std::endl;
 }

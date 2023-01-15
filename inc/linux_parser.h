@@ -28,7 +28,8 @@ namespace LinuxParser {
     float MemoryUtil();
     long upTime();
     std::vector<int> Pids();
-    int NumOfProcesses();
+    int TotalProcesses();
+    int RunningProcesses();
     int CurrentProcesses();
     std::string OS();
     std::string Kernel();

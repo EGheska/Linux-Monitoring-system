@@ -1,7 +1,12 @@
 //
 // Created by Dima on 14/01/2023.
 //
-
+#include <algorithm>
+#include <cstddef>
+#include <set>
+#include <string>
+#include <unistd.h>
+#include <vector>
 #include "../inc/system.h"
 #include "../inc/processor.h"
 #include "../inc/process.h"
@@ -25,24 +30,24 @@ std::vector<Process> &System::Processes() {
 }
 
 float System::MemoryUtil() {
-
+    return LinuxParser::MemoryUtil();
 }
 
 long System::upTime() {
-
+    return LinuxParser::upTime();
 }
 
 int System::NumOfProcesses() {
-
+    return LinuxParser::NumOfProcesses();
 }
 
 int System::CurrentProcessess() {
-
+    return LinuxParser::CurrentProcesses();
 }
 
 std::string System::Kernel(){ return LinuxParser::Kernel(); }
 
 std::string System::OS() {
-
+    return LinuxParser::OS();
 }
 

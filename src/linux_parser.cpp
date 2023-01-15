@@ -65,24 +65,6 @@ std::vector<int> LinuxParser::Pids() {
     return pids;
 }
 
-int LinuxParser::CurrentProcesses() {
-    std::string line;
-    std::string key;
-    int value;
-    std::ifstream stream(kProcDirectory + kStatFilename);
-    if (stream.is_open()) {
-        while (std::getline(stream, line)) {
-            std::istringstream linestream(line);
-            while (linestream >> key >> value) {
-                if (key == "processes") {
-                    return value;
-                }
-            }
-        }
-    }
-    return 0;
-}
-
 std::string LinuxParser::Kernel() {
     std::string os;
     std::string line;

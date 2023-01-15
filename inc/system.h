@@ -18,8 +18,8 @@ public:
     std::vector<Process> &Processes();
     float MemoryUtil();
     long upTime();
-    int NumOfProcesses();
-    int CurrentProcessess();
+    int TotalProcesses();
+    int RunningProcesses();
     std::string Kernel();
     std::string OS();
 

@@ -30,7 +30,6 @@ namespace LinuxParser {
     std::vector<int> Pids();
     int TotalProcesses();
     int RunningProcesses();
-    int CurrentProcesses();
     std::string OS();
     std::string Kernel();
 

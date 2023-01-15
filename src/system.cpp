@@ -44,12 +44,12 @@ long System::upTime() {
     return LinuxParser::upTime();
 }
 
-int System::NumOfProcesses() {
-    return LinuxParser::NumOfProcesses();
+int System::TotalProcesses(){
+    return LinuxParser::TotalProcesses();
 }
 
-int System::CurrentProcessess() {
-    return LinuxParser::CurrentProcesses();
+int System::RunningProcesses() {
+    return LinuxParser::RunningProcesses();
 }
 
 std::string System::Kernel(){ return LinuxParser::Kernel(); }

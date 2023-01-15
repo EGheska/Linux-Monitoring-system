@@ -1,5 +1,0 @@
-/home/pc/Desktop/Linux-Monitoring-system/build/CMakeFiles/Linux-Monitoring-system.dir
-/home/pc/Desktop/Linux-Monitoring-system/build/CMakeFiles/edit_cache.dir
-/home/pc/Desktop/Linux-Monitoring-system/build/CMakeFiles/rebuild_cache.dir
-/home/pc/Desktop/Linux-Monitoring-system/build/src/CMakeFiles/edit_cache.dir
-/home/pc/Desktop/Linux-Monitoring-system/build/src/CMakeFiles/rebuild_cache.dir

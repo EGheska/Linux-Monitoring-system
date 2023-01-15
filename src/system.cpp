@@ -5,6 +5,7 @@
 #include "../inc/system.h"
 #include "../inc/processor.h"
 #include "../inc/process.h"
+#include "../inc/linux_parser.h"
 
 // Taking the systems CPU
 Processor &System::Cpu() { return cpu_; }
@@ -12,7 +13,7 @@ Processor &System::Cpu() { return cpu_; }
 // Taking the systems processes in composed container
 std::vector<Process> &System::Processes() {
     processess_.clear();
-    vector<int> pids = LinuxParser::Pids();
+    std::vector<int> pids = LinuxParser::Pids();
     for (unsigned int i = 0; i < pids.size(); i++) {
         Process p = Process(pids[i]);
         processess_.push_back(p);

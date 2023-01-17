@@ -10,7 +10,7 @@
 
 #include "linux_parser.h"
 
-
+//  Return memory utilization
 float LinuxParser::MemoryUtil() {
     float total_memory, available_memory;
     std::string line;
@@ -34,7 +34,7 @@ float LinuxParser::MemoryUtil() {
     }
     return (total_memory - available_memory)/total_memory;
 }
-
+// Return the operating system that is running on the host time
 long LinuxParser::upTime() {
     std::string uptime;
     std::string line;
@@ -47,6 +47,7 @@ long LinuxParser::upTime() {
     return std::stol(uptime);
 }
 
+// Return the number of processes
 std::vector<int> LinuxParser::Pids() {
     std::vector<int> pids;
     DIR* directory = opendir(kProcDirectory.c_str());
@@ -64,7 +65,7 @@ std::vector<int> LinuxParser::Pids() {
     closedir(directory);
     return pids;
 }
-
+// Return  kernel version data
 std::string LinuxParser::Kernel() {
     std::string os;
     std::string line;
@@ -78,7 +79,7 @@ std::string LinuxParser::Kernel() {
     }
     return kernel;
 }
-
+// Read and return the system memory utilization
 std::string LinuxParser::OS() {
     std::string line;
     std::string key;
@@ -103,7 +104,7 @@ std::string LinuxParser::OS() {
     }
     return value;
 }
-
+// Read and return the system memory utilization
 std::vector<std::string> LinuxParser::CpuUtil() {
     std::string line;
     std::string key;
@@ -141,6 +142,7 @@ std::string LinuxParser::Ram(int pid) {
     }
     return std::string();
 }
+// Read and return the user ID associated with a process
 int LinuxParser::TotalProcesses(){
     std::string line;
     std::string key;
@@ -158,6 +160,7 @@ int LinuxParser::TotalProcesses(){
     }
     return 0;
 }
+// Read and return the number of running processes
 int LinuxParser::RunningProcesses(){
     std::string line;
     std::string key;

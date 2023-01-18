@@ -1,6 +1,5 @@
-#include "ncurses_display.h"
 #include "system.h"
-
+#include "display.h"
 int main() {
     System system;
     NCursesDisplay::Display(system);

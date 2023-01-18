@@ -150,31 +150,31 @@ long LinuxParser::UpTime() {
 // // Processor
 // //-----------------------------------------------------------------------------
 
-// Read and return the number of jiffies for the system
-long LinuxParser::Jiffies() { 
-  std::vector<std::string> jiffies = CpuUtilization();
-  long t_jiffies = 0;
-  for(std::string jiffie : jiffies) {
-    t_jiffies += std::stoi(jiffie);
+// Read and return the number of unit of time for the system
+long LinuxParser::Timer() { 
+  std::vector<std::string> timer = CpuUtilization();
+  long t_time = 0;
+  for(std::string time : timer) {
+    t_time += std::stoi(time);
   }
-  return t_jiffies;
+  return t_time;
 }
 
-// Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies() { 
-  long a_jiffies = 0;
-  a_jiffies = Jiffies() - IdleJiffies();
-  return a_jiffies;
+// Read and return the number of active unit of time for the system
+long LinuxParser::ActiveTimer() { 
+  long a_times = 0;
+  a_times = Timer() - IdleTimer();
+  return a_times;
 }
 
-// Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies() { 
-  std::vector<std::string> jiffies = CpuUtilization();
-  long i_jiffies = 0;
-  long idle = std::stoi(jiffies[3]);
-  long iowait = std::stoi(jiffies[4]);
-  i_jiffies = idle + iowait;
-  return i_jiffies;
+// Read and return the number of idle unit of time for the system
+long LinuxParser::IdleTimer() { 
+  std::vector<std::string> times = CpuUtilization();
+  long i_times = 0;
+  long idle = std::stoi(times[3]);
+  long iowait = std::stoi(times[4]);
+  i_times = idle + iowait;
+  return i_times;
 }
 //-----------------------------------------------------------------------------
 // Process

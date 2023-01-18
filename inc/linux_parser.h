@@ -32,9 +32,9 @@ std::string Kernel();
 
 // CPU
 std::vector<std::string> CpuUtilization();
-long Jiffies();
-long ActiveJiffies();
-long IdleJiffies();
+long Timer();
+long ActiveTimer();
+long IdleTimer();
 
 long int UpTime(int pid);
 }; 

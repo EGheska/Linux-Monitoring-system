@@ -6,4 +6,3 @@ class Processor {
   float Utilization();
 };
 #endif
-

@@ -1,1 +1,0 @@
-target_sources(monitoring PRIVATE format.cpp linux_parser.cpp ncurses_display.cpp system.cpp processor.cpp system.cpp)

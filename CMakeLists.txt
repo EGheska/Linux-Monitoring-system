@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.22)
 project(monitoring)
 
+set(CMAKE_CXX_STANDARD 20)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
 
-include_directories(include)
+include_directories(inc)
 file(GLOB SOURCES "src/*.cpp")
 
 add_executable(monitoring ${SOURCES})

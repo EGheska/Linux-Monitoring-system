@@ -45,13 +45,3 @@ int System::TotalProcesses() {
 long int System::UpTime() { 
   return LinuxParser::UpTime(); 
 }
-
-
-
-
-
-
-
-
-
-

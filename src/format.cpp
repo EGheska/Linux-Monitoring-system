@@ -3,7 +3,6 @@
 
 #include "format.h"
 
-
 #define HOUR  3600
 #define MIN   60
 // INPUT: Long int measuring seconds

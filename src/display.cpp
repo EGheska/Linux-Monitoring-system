@@ -8,7 +8,7 @@
 
 #include "system.h"
 #include "format.h"
-#include "ncurses_display.h"
+#include "display.h"
 
 
 // 50 bars uniformly displayed from 0 - 100 %
@@ -34,7 +34,7 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
   mvwaddstr(window, ++row, 2, ("Kernel: " + system.Kernel()).c_str());
   mvwaddstr(window, ++row, 2, "CPU:");
   wattron(window, COLOR_PAIR(1));
-  mvwaddstr(window, row, 10, " ");
+  mvwaddstr(window, row, 9, " ");
   waddstr(window, ProgressBar(system.Cpu().Utilization()).c_str());
   wattroff(window, COLOR_PAIR(1));
   mvwaddstr(window, ++row, 2, "Memory:  ");

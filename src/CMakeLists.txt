@@ -1,1 +1,0 @@
-target_sources(Linux-Monitoring-system PRIVATE linux_parser.cpp process.cpp system.cpp processor.cpp)

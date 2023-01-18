@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.22)
-project(Linux-Monitoring-system)
+project(monitoring)
 
-set(CMAKE_CXX_STANDARD 20)
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIRS})
 
-add_executable(Linux-Monitoring-system main.cpp)
-add_subdirectory(src)
-target_include_directories(Linux-Monitoring-system PRIVATE inc)
+include_directories(include)
+file(GLOB SOURCES "src/*.cpp")
 
-target_compile_features(Linux-Monitoring-system PRIVATE cxx_std_20)
-#target_compile_options(Linux-Monitoring-system PRIVATE -Wall -Wextra -Werror -fsanitize=address)
-#target_link_options(Linux-Monitoring-system PRIVATE -fsanitize=address)
+add_executable(monitoring ${SOURCES})
+
+set_property(TARGET monitoring PROPERTY CXX_STANDARD 20)
+target_link_libraries(monitoring ${CURSES_LIBRARIES})
+target_compile_options(monitoring PRIVATE -Wall -Wextra -Werror -fsanitize=address)
+target_link_options(monitoring PRIVATE -fsanitize=address)

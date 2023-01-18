@@ -1,32 +1,25 @@
-//
-// Created by Dima on 14/01/2023.
-//
-
-#ifndef LINUX_MONITORING_SYSTEM_SYSTEM_H
-#define LINUX_MONITORING_SYSTEM_SYSTEM_H
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 #include <string>
 #include <vector>
 
-#include "process.h"
+
 #include "processor.h"
 
 class System {
-public:
-    System();
-    Processor &Cpu();
-    std::vector<Process> &Processes();
-    float MemoryUtil();
-    long upTime();
-    int TotalProcesses();
-    int RunningProcesses();
-    std::string Kernel();
-    std::string OS();
+ public:
+  Processor& Cpu();
+  float MemoryUtilization();
+  long UpTime();
+  int TotalProcesses();
+  int RunningProcesses();
+  std::string Kernel();
+  std::string OperatingSystem();
 
-private:
-    // Defining processor called CPU
-    Processor cpu_ = {};
-    std::vector<Process> processess_ = {};
+ private:
+  Processor cpu_ = {};
 };
 
-#endif //LINUX_MONITORING_SYSTEM_SYSTEM_H
+#endif
+

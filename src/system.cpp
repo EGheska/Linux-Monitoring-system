@@ -1,62 +1,51 @@
-//
-// Created by Dima on 14/01/2023.
-//
-#include <algorithm>
+#include <unistd.h>
 #include <cstddef>
 #include <set>
 #include <string>
-#include <unistd.h>
 #include <vector>
-#include "system.h"
-#include "processor.h"
-#include "process.h"
+
 #include "linux_parser.h"
-#include "iostream"
+#include "processor.h"
+#include "system.h"
 
-System::System() {
-    cpu_ = Processor();
-    processess_ = {};
-    std::cout << "System created" << std::endl;
+
+/**
+ * Return the system's CPU. 
+ * Reserved for future additional features
+ */
+Processor& System::Cpu() { 
+  return cpu_; 
+}
+// Returns the system's kernel identifier (string)
+std::string System::Kernel() { 
+  return LinuxParser::Kernel();
 }
 
-// Taking the systems CPU
-Processor &System::Cpu() { return cpu_; }
-
-// Taking the systems processes in composed container
-std::vector<Process> &System::Processes() {
-    processess_.clear();
-    std::vector<int> pids = LinuxParser::Pids();
-    for (unsigned int i = 0; i < pids.size(); i++) {
-        Process p = Process(pids[i]);
-        processess_.push_back(p);
-    }
-    // sort the processes by CPU usage
-    std::sort(processess_.begin(), processess_.end());
-    std::reverse(processess_.begin(), processess_.end());
-    return processess_;
+// Returns the system's memory utilization
+float System::MemoryUtilization() { 
+  return LinuxParser::MemoryUtilization(); 
 }
 
-float System::MemoryUtil() {
-    return LinuxParser::MemoryUtil();
+// Returns the operating system name
+std::string System::OperatingSystem() { 
+  return LinuxParser::OperatingSystem(); 
 }
 
-long System::upTime() {
-    return LinuxParser::upTime();
+// Returns the number of processes actively running on the system
+int System::RunningProcesses() { 
+  return LinuxParser::RunningProcesses();
 }
 
-int System::TotalProcesses(){
-    return LinuxParser::TotalProcesses();
+// Returns the total number of processes on the system
+int System::TotalProcesses() { 
+  return LinuxParser::TotalProcesses(); 
 }
 
-int System::RunningProcesses() {
-    return LinuxParser::RunningProcesses();
+// Returns the number of seconds since the system started running
+long int System::UpTime() { 
+  return LinuxParser::UpTime(); 
 }
 
-std::string System::Kernel(){ return LinuxParser::Kernel(); }
-
-std::string System::OS() {
-    return LinuxParser::OS();
-}
 
 
 

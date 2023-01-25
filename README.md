@@ -9,7 +9,10 @@ Open the project
 mkdir build
 ```
 ```
-cmake make
+cmake .. && make
+```
+```
+write  `./monitoring` to run program
 ```
 
 ## System overview

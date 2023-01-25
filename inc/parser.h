@@ -13,13 +13,13 @@
 namespace LinuxParser {
 
 // Paths to system files
- const std::string kProcDirectory{"/proc/"};
- const std::string kStatusFilename{"/status"};
- const std::string kStatFilename{"/stat"};
- const std::string kUptimeFilename{"/uptime"};
- const std::string kMeminfoFilename{"/meminfo"};
- const std::string kVersionFilename{"/version"};
- const std::string kOSPath{"/etc/os-release"};
+//virtual file sys 
+ const std::string procDirectory{"/proc/"};
+ const std::string statFilename{"/stat"};
+ const std::string uptimeFilename{"/uptime"};
+ const std::string meminfoFilename{"/meminfo"};
+ const std::string versionFilename{"/version"};
+ const std::string oSPath{"/etc/os-release"};
 
 // System
 float MemoryUtilization();
@@ -35,9 +35,5 @@ std::vector<std::string> CpuUtilization();
 long Timer();
 long ActiveTimer();
 long IdleTimer();
-
-long int UpTime(int pid);
 }; 
-
-
 #endif //LIN_LINUX_PARSER_H

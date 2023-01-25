@@ -40,7 +40,7 @@ std::string LinuxParser::OperatingSystem() {
   std::string line;
   std::string key;
   std::string value = "n/a";
-  std::ifstream filestream(kOSPath);
+  std::ifstream filestream(oSPath);
   if (filestream.is_open()) {
     while (std::getline(filestream, line)) {
       std::replace(line.begin(), line.end(), ' ', '_');
@@ -62,7 +62,7 @@ std::string LinuxParser::Kernel() {
   std::string skip;
   std::string kernel = "n/a";
   std::string line;
-  std::ifstream stream(kProcDirectory + kVersionFilename);
+  std::ifstream stream(procDirectory + versionFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
@@ -76,7 +76,7 @@ std::vector<std::string> LinuxParser::CpuUtilization() {
   std::string timer;
   std::string line;
   std::string skip;
-  std::ifstream stream(kProcDirectory + kStatFilename);
+  std::ifstream stream(procDirectory + statFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line); 
@@ -96,7 +96,7 @@ float LinuxParser::MemoryUtilization() {
   std::string line;
   float mem = 0.0;
   std::vector<std::string> memory;
-  std::ifstream stream(kProcDirectory + kMeminfoFilename);
+  std::ifstream stream(procDirectory + meminfoFilename);
   if (stream.is_open()) {
     for (int i = 0; i < 2; ++i) {
       std::getline(stream, line);
@@ -114,7 +114,7 @@ float LinuxParser::MemoryUtilization() {
 // Reads and returns the total number of processes
 int LinuxParser::TotalProcesses() { 
   int t_processes = 0;
-  std::string path = kProcDirectory + kStatFilename;
+  std::string path = procDirectory + statFilename;
   std::string result = LinuxParser::KeyValParser("processes", path);
   t_processes = std::stoi(result);
   return t_processes;
@@ -123,7 +123,7 @@ int LinuxParser::TotalProcesses() {
 // Reads and returns the number of running processes
 int LinuxParser::RunningProcesses() { 
   int a_processes = 0;
-  std::string path = kProcDirectory + kStatFilename;
+  std::string path = procDirectory + statFilename;
   std::string result = LinuxParser::KeyValParser("procs_running", path);
   a_processes = std::stoi(result);
   return a_processes;
@@ -134,7 +134,7 @@ long LinuxParser::UpTime() {
   long uptime = 0.0;
   std::string temp = "0.0";
   std::string line;
-  std::ifstream stream(kProcDirectory + kUptimeFilename);
+  std::ifstream stream(procDirectory + uptimeFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
@@ -171,21 +171,4 @@ long LinuxParser::IdleTimer() {
   long iowait = std::stoi(times[4]);
   i_times = idle + iowait;
   return i_times;
-}
-// Process
-// Reads and returns the uptime of a process
-long LinuxParser::UpTime(int pid) { 
-  long ticks = 0;
-  std::string line;
-  std::string skip;
-  std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatFilename);
-  if (stream.is_open()) {
-    std::getline(stream, line);
-    std::istringstream linestream(line); 
-    for(int i = 1; i < 22; ++i) {
-      linestream >> skip;
-    }
-    linestream >> ticks;
-  }
-  return ticks / sysconf(_SC_CLK_TCK);
 }

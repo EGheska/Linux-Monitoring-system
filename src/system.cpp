@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "linux_parser.h"
+#include "parser.h"
 #include "processor.h"
 #include "system.h"
 

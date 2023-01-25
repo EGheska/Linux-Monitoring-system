@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "processor.h"
-#include "linux_parser.h"
+#include "parser.h"
 
 // Returns the aggregate CPU utilization
 float Processor::Utilization() { 

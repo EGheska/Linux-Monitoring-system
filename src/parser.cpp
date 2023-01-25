@@ -5,12 +5,10 @@
 #include <algorithm>
 #include <sstream>
 
-#include "linux_parser.h"
+#include "parser.h"
 
-
-//-----------------------------------------------------------------------------
 // Utils
-//-----------------------------------------------------------------------------
+
 
 //Parses the file to find a value for a given key
 std::string LinuxParser::KeyValParser(std::string key, std::string path) {
@@ -34,9 +32,9 @@ std::string LinuxParser::KeyValParser(std::string key, std::string path) {
   return value; 
 }
 
-//-----------------------------------------------------------------------------
+
 // System
-//-----------------------------------------------------------------------------
+
 
 std::string LinuxParser::OperatingSystem() {
   std::string line;
@@ -146,9 +144,7 @@ long LinuxParser::UpTime() {
   return uptime; 
 }
 
-// //-----------------------------------------------------------------------------
-// // Processor
-// //-----------------------------------------------------------------------------
+// Processor
 
 // Read and return the number of unit of time for the system
 long LinuxParser::Timer() { 
@@ -176,10 +172,7 @@ long LinuxParser::IdleTimer() {
   i_times = idle + iowait;
   return i_times;
 }
-//-----------------------------------------------------------------------------
 // Process
-//-----------------------------------------------------------------------------
-
 // Reads and returns the uptime of a process
 long LinuxParser::UpTime(int pid) { 
   long ticks = 0;

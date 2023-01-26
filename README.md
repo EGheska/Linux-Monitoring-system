@@ -14,6 +14,11 @@ cmake .. && make
 ```
 write  ./monitoring to run program
 ```
+Also make sure if you have ncurses library installed on your system. If not, you can install it by running the following command:
+```
+sudo apt-get install libncurses5-dev libncursesw5-dev
+```
+
 
 ## System overview
 The system presented in 

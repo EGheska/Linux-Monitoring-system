@@ -12,7 +12,7 @@
 std::string NCursesDisplay::ProgressBar(float percent) {
   std::string display{std::to_string(percent * 100).substr(0, 4)};
   if (percent < 0.1 || percent == 1.0)
-    display = "           " + std::to_string(percent * 100).substr(0, 3);
+    display = " " + std::to_string(percent * 100).substr(0, 3);
   return display + "/100%";
 }
 
@@ -24,7 +24,7 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
   mvwaddstr(window, ++row, 2, ("Kernel:            " + system.Kernel()).c_str());
 
   mvwaddstr(window, ++row, 2, "CPU: ");
-  mvwaddstr(window, row, 9, "            ");
+  mvwaddstr(window, row, 9, "           ");
   waddstr(window, ProgressBar(system.Cpu().Utilization()).c_str());
 
   mvwaddstr(window, ++row, 2, "Memory: ");

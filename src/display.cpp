@@ -7,8 +7,12 @@
 #include "format.h"
 #include "display.h"
 
+/*
+* Display the system information
+* @param system - system object
+* @param window - ncurses window
+*/
 
-// 
 std::string NCursesDisplay::ProgressBar(float percent) {
   std::string display{std::to_string(percent * 100).substr(0, 4)};
   if (percent < 0.1 || percent == 1.0)
@@ -18,23 +22,16 @@ std::string NCursesDisplay::ProgressBar(float percent) {
 
 void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
   int row{0};
-  //
   mvwaddstr(window, ++row, 2, ("OS:                " + system.OperatingSystem()).c_str());
-
   mvwaddstr(window, ++row, 2, ("Kernel:            " + system.Kernel()).c_str());
-
   mvwaddstr(window, ++row, 2, "CPU: ");
   mvwaddstr(window, row, 9, "           ");
   waddstr(window, ProgressBar(system.Cpu().Utilization()).c_str());
-
   mvwaddstr(window, ++row, 2, "Memory: ");
   mvwaddstr(window, row, 10, "           ");
   waddstr(window, ProgressBar(system.MemoryUtilization()).c_str());
-
   mvwaddstr(window, ++row, 2,("Total Processes:   " + std::to_string(system.TotalProcesses())).c_str());
-
   mvwaddstr(window, ++row, 2,("Running Processes: " + std::to_string(system.RunningProcesses())).c_str());
-  
   mvwaddstr(window, ++row, 2,("Up Time:           " + Format::ElapsedTime(system.UpTime())).c_str());
   wrefresh(window);
 }
@@ -51,9 +48,7 @@ void NCursesDisplay::Display(System& system) {
 
   while (1) {
     box(system_window, 0, 0);
-
     DisplaySystem(system, system_window);
-
     wrefresh(system_window);
     // refresh screen to match memory
     refresh();

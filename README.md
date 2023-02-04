@@ -1,27 +1,47 @@
-### Here we try to explain the structure of the source code.
+### SETUP
 
 ## Description of the project
 The main goal of this project was to develop an linux utility program for monitoring the system. The key concepts is that the system should work from terminal and display the CPU utilization, RAM usage and so on.
 
 ## How to run a project
 Open the project
-```
+```bash
 mkdir build
 ```
-```
+```bash
 cmake .. && make
 ```
+write
+```bash
+./monitoring
 ```
-write  ./monitoring to run program
+to start the project.
+
+### Additional information if you have any problems
+
+If any error occurs, make sure you have installed the ncurses library.
+
+Or detele build folder:
+```bash
+rm -rf build
 ```
+and run the following command again:
+```bash
+mkdir build && cd build && cmake .. && make
+```
+
 Also make sure if you have ncurses library installed on your system. If not, you can install it by running the following command:
-```
+```bash
 sudo apt-get install libncurses5-dev libncursesw5-dev
 ```
 
 
-## System overview
-The system presented in 
+## More details about the project [check the following link](top_monitor.md)
+
+
+
+    
+
 
 # Reference
 

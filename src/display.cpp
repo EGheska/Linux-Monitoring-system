@@ -8,19 +8,21 @@
 #include "display.h"
 
 /*
-* Display the system information
-* @param system - system object
-* @param window - ncurses window
-*/
+ * Display the system information
+ * @param system - system object
+ * @param window - ncurses window
+ */
 
-std::string NCursesDisplay::ProgressBar(float percent) {
+std::string NCursesDisplay::ProgressBar(float percent)
+{
   std::string display{std::to_string(percent * 100).substr(0, 4)};
   if (percent < 0.1 || percent == 1.0)
     display = " " + std::to_string(percent * 100).substr(0, 3);
   return display + "/100%";
 }
 
-void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
+void NCursesDisplay::DisplaySystem(System &system, WINDOW *window)
+{
   int row{0};
   mvwaddstr(window, ++row, 2, ("OS:                " + system.OperatingSystem()).c_str());
   mvwaddstr(window, ++row, 2, ("Kernel:            " + system.Kernel()).c_str());
@@ -30,23 +32,25 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
   mvwaddstr(window, ++row, 2, "Memory: ");
   mvwaddstr(window, row, 10, "           ");
   waddstr(window, ProgressBar(system.MemoryUtilization()).c_str());
-  mvwaddstr(window, ++row, 2,("Total Processes:   " + std::to_string(system.TotalProcesses())).c_str());
-  mvwaddstr(window, ++row, 2,("Running Processes: " + std::to_string(system.RunningProcesses())).c_str());
-  mvwaddstr(window, ++row, 2,("Up Time:           " + Format::ElapsedTime(system.UpTime())).c_str());
+  mvwaddstr(window, ++row, 2, ("Total Processes:   " + std::to_string(system.TotalProcesses())).c_str());
+  mvwaddstr(window, ++row, 2, ("Running Processes: " + std::to_string(system.RunningProcesses())).c_str());
+  mvwaddstr(window, ++row, 2, ("Up Time:           " + Format::ElapsedTime(system.UpTime())).c_str());
   wrefresh(window);
 }
 
-void NCursesDisplay::Display(System& system) {
+void NCursesDisplay::Display(System &system)
+{
   // initizalize ncurses -screen, no echo, no delay, no cursor
-  initscr();      // start ncurses
-  noecho();       // do not print input values
-  cbreak();       // terminate ncurses on ctrl + c
-  //newwin(height, width, start_y, start_x)
-  
-  int x_max{getmaxx(stdscr)};// get max x value of screen
-  WINDOW* system_window = newwin(9, x_max - 1, 0, 0);
+  initscr(); // start ncurses
+  noecho();  // do not print input values
+  cbreak();  // terminate ncurses on ctrl + c
+  // newwin(height, width, start_y, start_x)
 
-  while (1) {
+  int x_max{getmaxx(stdscr)}; // get max x value of screen
+  WINDOW *system_window = newwin(9, x_max - 1, 0, 0);
+
+  while (1)
+  {
     box(system_window, 0, 0);
     DisplaySystem(system, system_window);
     wrefresh(system_window);

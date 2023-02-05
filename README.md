@@ -1,4 +1,4 @@
-### SETUP
+# SETUP
 
 ## Description of the project
 The main goal of this project was to develop an linux utility program for monitoring the system. The key concepts is that the system should work from terminal and display the CPU utilization, RAM usage and so on.
@@ -35,13 +35,7 @@ Also make sure if you have ncurses library installed on your system. If not, you
 sudo apt-get install libncurses5-dev libncursesw5-dev
 ```
 
-
 ## More details about the project [check the following link](top_monitor.md)
-
-
-
-    
-
 
 # Reference
 

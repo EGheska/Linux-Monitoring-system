@@ -26,9 +26,9 @@ std::string LinuxParser::KeyValParser(std::string key, std::string path) {
         linestream >> temp;
         value = temp;
         search = false;
-      } // End inner if
-    } // End while
-  } // End outer if
+      } 
+    } 
+  } 
   return value; 
 }
 

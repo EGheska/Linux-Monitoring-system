@@ -160,7 +160,6 @@ void NCursesDisplay::Display(System& system) {
   initscr();      // start ncurses
   noecho();       // do not print input values
   cbreak();       // terminate ncurses on ctrl + c
-  //newwin(height, width, start_y, start_x)
 
   int x_max{getmaxx(stdscr)};// get max x value of screen
   WINDOW* system_window = newwin(9, x_max - 1, 0, 0);
@@ -228,4 +227,3 @@ Overall, it's a pleasant experience with Ncurses, a simple way to implement an i
 - Nice youtube [tutorial.](https://www.youtube.com/watch?v=pjT5wq11ZSE)
 - top(1) - Linux manual [page.](https://man7.org/linux/man-pages/man1/top.1.html)
 - Github [repo.](https://github.com/EGheska/Linux-Monitoring-system)
-git
